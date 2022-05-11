@@ -5,11 +5,6 @@
 			"referenceName": "MySqlTablerLocItemLocacao",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"tableName": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "MySqlTable",
 		"schema": [],
