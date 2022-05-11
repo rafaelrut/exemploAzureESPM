@@ -2,11 +2,14 @@
 	"name": "MySqlTableLocItemLocacao",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "MySqlTableLOC_AGE_BCO",
+			"referenceName": "MySqlTablerLocItemLocacao",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "MySqlTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"tableName": "`loc_item_locacao`"
+		}
 	}
 }
