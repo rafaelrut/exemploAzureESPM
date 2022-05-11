@@ -1,0 +1,15 @@
+{
+	"name": "MySqlTableLoc_tp_automovel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MySqlTableLoc_tp_automovel",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MySqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "`loc_tp_automovel`"
+		}
+	}
+}

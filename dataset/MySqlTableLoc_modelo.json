@@ -1,0 +1,15 @@
+{
+	"name": "MySqlTableLoc_modelo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MySqlTableLoc_modelo",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MySqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "`loc_modelo`"
+		}
+	}
+}

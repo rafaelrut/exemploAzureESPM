@@ -1,0 +1,15 @@
+{
+	"name": "MySqlTableLoc_operadora",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MySqlTableLoc_operadora",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MySqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "`loc_operadora`"
+		}
+	}
+}
