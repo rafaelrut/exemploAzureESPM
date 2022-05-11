@@ -1,0 +1,15 @@
+{
+	"name": "MySqlTableLoc_gerente",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MySqlTableLoc_gerente",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MySqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "`loc_gerente`"
+		}
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"name": "MySqlTableFone_cliente",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MySqlTableFone_cliente",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MySqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "`loc_Fone_Cliente`"
+		}
+	}
+}

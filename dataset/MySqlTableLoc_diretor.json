@@ -1,8 +1,8 @@
 {
-	"name": "MySqlTableLocItemLocacao",
+	"name": "MySqlTableLoc_diretor",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "MySqlTableLOC_AGE_BCO",
+			"referenceName": "MySqlTableLoc_diretor",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],

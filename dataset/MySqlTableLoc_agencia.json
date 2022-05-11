@@ -1,0 +1,15 @@
+{
+	"name": "MySqlTableLoc_agencia",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MySqlTableLoc_Agencia",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MySqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "`loc_agencia`"
+		}
+	}
+}
