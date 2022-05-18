@@ -1,0 +1,49 @@
+{
+	"name": "SqlServerTableResponseTime",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerUber",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ResponseTimeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RequestLocationID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "localized_display_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "estimate",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "display_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "product_id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Create",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ResponseTime"
+		}
+	}
+}

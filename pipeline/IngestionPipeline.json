@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Item_locacao",
+				"name": "LocItemLocacao",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -50,7 +50,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "LocItemLocacao.parquet"
 						}
 					}
 				]
@@ -58,7 +58,14 @@
 			{
 				"name": "Fone_cliente",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "LocItemLocacao",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -103,15 +110,22 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Fone_cliente.parquet"
 						}
 					}
 				]
 			},
 			{
-				"name": "Loc_age_bco",
+				"name": "LOC_AGE_BCO",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Fone_cliente",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -156,7 +170,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "LOC_AGE_BCO.parquet"
 						}
 					}
 				]
@@ -164,7 +178,14 @@
 			{
 				"name": "Loc_agencia",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "LOC_AGE_BCO",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -209,7 +230,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_agencia.parquet"
 						}
 					}
 				]
@@ -217,7 +238,14 @@
 			{
 				"name": "Loc_banco",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_agencia",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -262,7 +290,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_banco.parquet"
 						}
 					}
 				]
@@ -270,7 +298,14 @@
 			{
 				"name": "Loc_cargo",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_banco",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -315,7 +350,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_cargo.parquet"
 						}
 					}
 				]
@@ -323,7 +358,14 @@
 			{
 				"name": "Loc_chefe",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_cargo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -368,7 +410,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_chefe.parquet"
 						}
 					}
 				]
@@ -376,7 +418,14 @@
 			{
 				"name": "Loc_cidade",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_chefe",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -421,7 +470,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_cidade.parquet"
 						}
 					}
 				]
@@ -429,7 +478,14 @@
 			{
 				"name": "Loc_cliente",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_cidade",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -474,7 +530,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_cliente.parquet"
 						}
 					}
 				]
@@ -482,7 +538,14 @@
 			{
 				"name": "Loc_cor",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_cliente",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -527,7 +590,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_cor.parquet"
 						}
 					}
 				]
@@ -535,7 +598,14 @@
 			{
 				"name": "Loc_depto",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_cor",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -580,7 +650,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_depto.parquet"
 						}
 					}
 				]
@@ -588,7 +658,14 @@
 			{
 				"name": "Loc_estado",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_depto",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -633,7 +710,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_estado.parquet"
 						}
 					}
 				]
@@ -641,7 +718,14 @@
 			{
 				"name": "Loc_fabricante",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_estado",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -686,7 +770,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_fabricante.parquet"
 						}
 					}
 				]
@@ -694,7 +778,14 @@
 			{
 				"name": "Loc_funcionario",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_fabricante",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -739,7 +830,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_funcionario.parquet"
 						}
 					}
 				]
@@ -747,7 +838,14 @@
 			{
 				"name": "Loc_gerente",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_funcionario",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -792,7 +890,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_gerente.parquet"
 						}
 					}
 				]
@@ -800,7 +898,14 @@
 			{
 				"name": "Loc_grupo",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_gerente",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -845,7 +950,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_grupo.parquet"
 						}
 					}
 				]
@@ -853,7 +958,14 @@
 			{
 				"name": "Loc_modelo",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_grupo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -898,7 +1010,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_modelo.parquet"
 						}
 					}
 				]
@@ -906,7 +1018,14 @@
 			{
 				"name": "Loc_operadora",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_modelo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -951,7 +1070,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_operadora.parquet"
 						}
 					}
 				]
@@ -959,7 +1078,14 @@
 			{
 				"name": "Loc_presidente",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_operadora",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1004,7 +1130,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_presidente.parquet"
 						}
 					}
 				]
@@ -1012,7 +1138,14 @@
 			{
 				"name": "Loc_proprietario",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_tp_combustivel",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1057,7 +1190,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_proprietario.parquet"
 						}
 					}
 				]
@@ -1065,7 +1198,14 @@
 			{
 				"name": "Loc_tp_automovel",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_proprietario",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1110,7 +1250,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_tp_automovel.parquet"
 						}
 					}
 				]
@@ -1118,7 +1258,14 @@
 			{
 				"name": "Loc_tp_cliente",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_tp_automovel",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1163,7 +1310,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_tp_cliente.parquet"
 						}
 					}
 				]
@@ -1171,7 +1318,14 @@
 			{
 				"name": "Loc_tp_combustivel",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_veiculo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1216,7 +1370,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_tp_combustivel.parquet"
 						}
 					}
 				]
@@ -1224,7 +1378,14 @@
 			{
 				"name": "Loc_veiculo",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_itemlocacao",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1269,7 +1430,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_veiculo.parquet"
 						}
 					}
 				]
@@ -1277,7 +1438,14 @@
 			{
 				"name": "Loc_itemlocacao",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_pedido_locacao",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1330,7 +1498,14 @@
 			{
 				"name": "Loc_pedido_locacao",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Loc_presidente",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1375,7 +1550,7 @@
 						"parameters": {
 							"container": "ingestion",
 							"folder": "carloca",
-							"file": "loc_item_locacao.parquet"
+							"file": "Loc_pedido_locacao.parquet"
 						}
 					}
 				]

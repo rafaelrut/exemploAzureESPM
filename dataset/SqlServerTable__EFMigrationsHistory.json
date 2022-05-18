@@ -1,0 +1,25 @@
+{
+	"name": "SqlServerTable__EFMigrationsHistory",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerUber",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MigrationId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProductVersion",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "__EFMigrationsHistory"
+		}
+	}
+}

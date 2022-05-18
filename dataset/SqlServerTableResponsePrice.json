@@ -1,0 +1,80 @@
+{
+	"name": "SqlServerTableResponsePrice",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerUber",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ResponsePriceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RequestLocationID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "localized_display_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "distance",
+				"type": "real",
+				"precision": 7
+			},
+			{
+				"name": "display_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "product_id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "high_estimate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "surge_multiplier",
+				"type": "real",
+				"precision": 7
+			},
+			{
+				"name": "minimum",
+				"type": "real",
+				"precision": 7
+			},
+			{
+				"name": "low_estimate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "duration",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "estimate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "currency_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Create",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ResponsePrice"
+		}
+	}
+}

@@ -1,0 +1,40 @@
+{
+	"name": "SqlServerTableRequestError",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerUber",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ResponseErrorID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RequestLocationID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Method",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Message",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Create",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ResponseError"
+		}
+	}
+}

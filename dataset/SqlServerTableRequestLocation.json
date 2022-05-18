@@ -1,0 +1,44 @@
+{
+	"name": "SqlServerTableRequestLocation",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerUber",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "RequestLocationID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "QuadriculaID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LocationID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Lat",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Lng",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Create",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RequestLocation"
+		}
+	}
+}

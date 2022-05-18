@@ -1,0 +1,34 @@
+{
+	"name": "SqlServerTableBaseLocations",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerUber",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "BaseLocationsID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "QuadriculaID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Lat",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Lng",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BaseLocations"
+		}
+	}
+}

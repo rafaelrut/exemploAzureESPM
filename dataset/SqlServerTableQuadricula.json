@@ -1,0 +1,33 @@
+{
+	"name": "SqlServerTableQuadricula",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerUber",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "QuadriculaID",
+				"type": "varchar"
+			},
+			{
+				"name": "min_baselocationsID",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "max_baselocationsID",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Quadricula"
+		}
+	}
+}
