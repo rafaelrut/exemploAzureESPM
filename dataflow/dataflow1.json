@@ -33,10 +33,25 @@
 					"name": "ResponseError"
 				},
 				{
-					"name": "source1"
+					"dataset": {
+						"referenceName": "ResponseTime",
+						"type": "DatasetReference"
+					},
+					"name": "ResponseTime"
+				},
+				{
+					"dataset": {
+						"referenceName": "ResponsePrice",
+						"type": "DatasetReference"
+					},
+					"name": "ResponsePrice"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "join2"
@@ -49,6 +64,9 @@
 				},
 				{
 					"name": "join5"
+				},
+				{
+					"name": "join6"
 				}
 			],
 			"scriptLines": [
@@ -97,8 +115,26 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> ResponseError",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source1",
+				"source(output(",
+				"          BaseLocationsID as integer,",
+				"          QuadriculaID as string,",
+				"          Lat as string,",
+				"          Lng as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> ResponseTime",
+				"source(output(",
+				"          BaseLocationsID as integer,",
+				"          QuadriculaID as string,",
+				"          Lat as string,",
+				"          Lng as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> ResponsePrice",
 				"quadricula, requestLocation join(quadricula@QuadriculaID == requestLocation@QuadriculaID,",
 				"     joinType:'right',",
 				"     broadcast: 'auto')~> join2",
@@ -108,9 +144,16 @@
 				"requestLocation, ResponseError join(requestLocation@RequestLocationID == ResponseError@RequestLocationID,",
 				"     joinType:'right',",
 				"     broadcast: 'auto')~> join4",
-				"ResponseError, quadricula join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
-				"     joinType:'inner',",
-				"     broadcast: 'auto')~> join5"
+				"requestLocation, ResponseTime join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'right',",
+				"     broadcast: 'auto')~> join5",
+				"quadricula, ResponseError join(quadricula@BaseLocationsID == LocationID,",
+				"     joinType:'right',",
+				"     broadcast: 'auto')~> join6",
+				"join6 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
