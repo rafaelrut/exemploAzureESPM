@@ -1,0 +1,38 @@
+{
+	"name": "ResponsePrice",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageIngestion",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ResponsePrice.parquet",
+				"folderPath": "masterUber",
+				"fileSystem": "ingestion"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "BaseLocationsID",
+				"type": "INT32"
+			},
+			{
+				"name": "QuadriculaID",
+				"type": "UTF8"
+			},
+			{
+				"name": "Lat",
+				"type": "UTF8"
+			},
+			{
+				"name": "Lng",
+				"type": "UTF8"
+			}
+		]
+	}
+}

@@ -1,0 +1,46 @@
+{
+	"name": "RequestLocation",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageIngestion",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "RequestLocation.parquet",
+				"folderPath": "masterUber",
+				"fileSystem": "ingestion"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "RequestLocationID",
+				"type": "INT32"
+			},
+			{
+				"name": "QuadriculaID",
+				"type": "UTF8"
+			},
+			{
+				"name": "LocationID",
+				"type": "INT32"
+			},
+			{
+				"name": "Lat",
+				"type": "UTF8"
+			},
+			{
+				"name": "Lng",
+				"type": "UTF8"
+			},
+			{
+				"name": "Create",
+				"type": "INT96"
+			}
+		]
+	}
+}

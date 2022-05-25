@@ -1,5 +1,5 @@
 {
-	"name": "SqlServerTableRequestError",
+	"name": "SqlServerTableResponseError",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SqlServerUber",

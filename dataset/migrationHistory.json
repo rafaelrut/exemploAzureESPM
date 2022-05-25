@@ -1,0 +1,30 @@
+{
+	"name": "migrationHistory",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageIngestion",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "EFMigrationsHistory.parquet",
+				"folderPath": "masterUber",
+				"fileSystem": "ingestion"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "MigrationId",
+				"type": "UTF8"
+			},
+			{
+				"name": "ProductVersion",
+				"type": "UTF8"
+			}
+		]
+	}
+}

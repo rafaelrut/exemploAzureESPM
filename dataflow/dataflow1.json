@@ -1,0 +1,117 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "quadricula",
+						"type": "DatasetReference"
+					},
+					"name": "quadricula"
+				},
+				{
+					"dataset": {
+						"referenceName": "RequestLocation",
+						"type": "DatasetReference"
+					},
+					"name": "requestLocation"
+				},
+				{
+					"dataset": {
+						"referenceName": "BaseLocations",
+						"type": "DatasetReference"
+					},
+					"name": "BaseLocation"
+				},
+				{
+					"dataset": {
+						"referenceName": "ResponseError",
+						"type": "DatasetReference"
+					},
+					"name": "ResponseError"
+				},
+				{
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "join2"
+				},
+				{
+					"name": "join3"
+				},
+				{
+					"name": "join4"
+				},
+				{
+					"name": "join5"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     parâmetro1 as string",
+				"}",
+				"source(output(",
+				"          BaseLocationsID as integer,",
+				"          QuadriculaID as string,",
+				"          Lat as string,",
+				"          Lng as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> quadricula",
+				"source(output(",
+				"          RequestLocationID as integer,",
+				"          QuadriculaID as string,",
+				"          LocationID as integer,",
+				"          Lat as string,",
+				"          Lng as string,",
+				"          Create as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> requestLocation",
+				"source(output(",
+				"          BaseLocationsID as integer,",
+				"          QuadriculaID as string,",
+				"          Lat as string,",
+				"          Lng as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> BaseLocation",
+				"source(output(",
+				"          BaseLocationsID as integer,",
+				"          QuadriculaID as string,",
+				"          Lat as string,",
+				"          Lng as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> ResponseError",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source1",
+				"quadricula, requestLocation join(quadricula@QuadriculaID == requestLocation@QuadriculaID,",
+				"     joinType:'right',",
+				"     broadcast: 'auto')~> join2",
+				"quadricula, BaseLocation join(quadricula@QuadriculaID == BaseLocation@QuadriculaID,",
+				"     joinType:'right',",
+				"     broadcast: 'auto')~> join3",
+				"requestLocation, ResponseError join(requestLocation@RequestLocationID == ResponseError@RequestLocationID,",
+				"     joinType:'right',",
+				"     broadcast: 'auto')~> join4",
+				"ResponseError, quadricula join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> join5"
+			]
+		}
+	}
+}
