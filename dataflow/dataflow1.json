@@ -13,30 +13,18 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "RequestLocation",
+						"referenceName": "ResponsePrice",
 						"type": "DatasetReference"
 					},
-					"name": "requestLocation"
+					"name": "ResponsePrice"
 				}
 			],
 			"sinks": [
 				{
-					"name": "sink1"
+					"name": "Fato"
 				}
 			],
 			"transformations": [
-				{
-					"name": "join2"
-				},
-				{
-					"name": "join3"
-				},
-				{
-					"name": "join4"
-				},
-				{
-					"name": "join5"
-				},
 				{
 					"name": "join6"
 				}
@@ -56,36 +44,22 @@
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> quadricula",
 				"source(output(",
-				"          RequestLocationID as integer,",
+				"          BaseLocationsID as integer,",
 				"          QuadriculaID as string,",
-				"          LocationID as integer,",
 				"          Lat as string,",
-				"          Lng as string,",
-				"          Create as timestamp",
+				"          Lng as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     format: 'parquet') ~> requestLocation",
-				"quadricula, requestLocation join(quadricula@QuadriculaID == requestLocation@QuadriculaID,",
-				"     joinType:'right',",
-				"     broadcast: 'auto')~> join2",
-				"quadricula join(quadricula@QuadriculaID == BaseLocation@QuadriculaID,",
-				"     joinType:'right',",
-				"     broadcast: 'auto')~> join3",
-				"requestLocation join(requestLocation@RequestLocationID == ResponseError@RequestLocationID,",
-				"     joinType:'right',",
-				"     broadcast: 'auto')~> join4",
-				"requestLocation join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
-				"     joinType:'right',",
-				"     broadcast: 'auto')~> join5",
-				"quadricula join(quadricula@BaseLocationsID == LocationID,",
+				"     format: 'parquet') ~> ResponsePrice",
+				"quadricula, ResponsePrice join(quadricula@BaseLocationsID == LocationID,",
 				"     joinType:'right',",
 				"     broadcast: 'auto')~> join6",
 				"join6 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> Fato"
 			]
 		}
 	}
