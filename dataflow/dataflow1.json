@@ -17,34 +17,6 @@
 						"type": "DatasetReference"
 					},
 					"name": "requestLocation"
-				},
-				{
-					"dataset": {
-						"referenceName": "BaseLocations",
-						"type": "DatasetReference"
-					},
-					"name": "BaseLocation"
-				},
-				{
-					"dataset": {
-						"referenceName": "ResponseError",
-						"type": "DatasetReference"
-					},
-					"name": "ResponseError"
-				},
-				{
-					"dataset": {
-						"referenceName": "ResponseTime",
-						"type": "DatasetReference"
-					},
-					"name": "ResponseTime"
-				},
-				{
-					"dataset": {
-						"referenceName": "ResponsePrice",
-						"type": "DatasetReference"
-					},
-					"name": "ResponsePrice"
 				}
 			],
 			"sinks": [
@@ -71,7 +43,7 @@
 			],
 			"scriptLines": [
 				"parameters{",
-				"     parâmetro1 as string",
+				"     par as string",
 				"}",
 				"source(output(",
 				"          BaseLocationsID as integer,",
@@ -95,59 +67,19 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> requestLocation",
-				"source(output(",
-				"          BaseLocationsID as integer,",
-				"          QuadriculaID as string,",
-				"          Lat as string,",
-				"          Lng as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     format: 'parquet') ~> BaseLocation",
-				"source(output(",
-				"          BaseLocationsID as integer,",
-				"          QuadriculaID as string,",
-				"          Lat as string,",
-				"          Lng as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     format: 'parquet') ~> ResponseError",
-				"source(output(",
-				"          BaseLocationsID as integer,",
-				"          QuadriculaID as string,",
-				"          Lat as string,",
-				"          Lng as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     format: 'parquet') ~> ResponseTime",
-				"source(output(",
-				"          BaseLocationsID as integer,",
-				"          QuadriculaID as string,",
-				"          Lat as string,",
-				"          Lng as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     format: 'parquet') ~> ResponsePrice",
 				"quadricula, requestLocation join(quadricula@QuadriculaID == requestLocation@QuadriculaID,",
 				"     joinType:'right',",
 				"     broadcast: 'auto')~> join2",
-				"quadricula, BaseLocation join(quadricula@QuadriculaID == BaseLocation@QuadriculaID,",
+				"quadricula join(quadricula@QuadriculaID == BaseLocation@QuadriculaID,",
 				"     joinType:'right',",
 				"     broadcast: 'auto')~> join3",
-				"requestLocation, ResponseError join(requestLocation@RequestLocationID == ResponseError@RequestLocationID,",
+				"requestLocation join(requestLocation@RequestLocationID == ResponseError@RequestLocationID,",
 				"     joinType:'right',",
 				"     broadcast: 'auto')~> join4",
-				"requestLocation, ResponseTime join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"requestLocation join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
 				"     joinType:'right',",
 				"     broadcast: 'auto')~> join5",
-				"quadricula, ResponseError join(quadricula@BaseLocationsID == LocationID,",
+				"quadricula join(quadricula@BaseLocationsID == LocationID,",
 				"     joinType:'right',",
 				"     broadcast: 'auto')~> join6",
 				"join6 sink(allowSchemaDrift: true,",
